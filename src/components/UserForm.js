@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import FormUserDetails from './FormUserDetails';
+import FormPersonalDetails from './FormPersonalDetails';
+import Confirm from './Confirm'
+import Success from './Success'
 
 export class UserForm extends Component {
     state = {
@@ -47,14 +50,30 @@ export class UserForm extends Component {
                         values={values}
                     />
                 )
-            case 1:
-                return <h2>FormPersonalDetails</h2>
+            case 2:
+                return (
+                    <FormPersonalDetails 
+                        nextStep={this.nextStep}
+                        prevStep={this.prevStep}
+                        handleChange={this.handleChange}
+                        values={values}
+                    />
+                )
             case 3:
-                return <h2>Confirm</h2>
+                return (
+                    <Confirm 
+                        nextStep={this.nextStep}
+                        prevStep={this.prevStep}
+                        values={values}
+                    />
+                )
             case 4:
-                return <h2>Success</h2>
+                return <Success values={values}/>
+            default:
+                return <h1>Im default and I shouldnt exist. That means you failed. Shame on you</h1>
         }
     }
 }
+
 
 export default UserForm;
